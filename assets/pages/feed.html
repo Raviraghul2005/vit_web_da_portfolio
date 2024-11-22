@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Feedback Form</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .feedback-form {
+            background: #ffffff;
+            padding: 25px 35px;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 26px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #6e8efb;
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #5b77e3, #925bdc);
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .feedback-form {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+
+        /* Subtle animation */
+        .feedback-form {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-form">
+        <h2>We Value Your Feedback</h2>
+        <form id="feedbackForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                <div class="error-message" id="usernameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="feedback">Feedback</label>
+                <textarea id="feedback" name="feedback" placeholder="Share your feedback" required></textarea>
+                <div class="error-message" id="feedbackError"></div>
+            </div>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById('username').value.trim();
+            const feedback = document.getElementById('feedback').value.trim();
+            const usernameError = document.getElementById('usernameError');
+            const feedbackError = document.getElementById('feedbackError');
+
+            let isValid = true;
+
+            // Clear previous errors
+            usernameError.textContent = '';
+            feedbackError.textContent = '';
+
+            if (username === '') {
+                usernameError.textContent = 'Username is required.';
+                isValid = false;
+            }
+
+            if (feedback === '') {
+                feedbackError.textContent = 'Feedback is required.';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
